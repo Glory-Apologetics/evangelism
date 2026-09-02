@@ -5184,3 +5184,7 @@ body:has(#welcomeScreen.active) .home-heart{
     }
 
 }
+
+.screen:not(.active) * {
+    pointer-events: none !important;
+}

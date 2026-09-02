@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>You Found Jesus</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- =====================================================
+         GLOBAL CINEMATIC ATMOSPHERE
+         ===================================================== -->
+
+    <div id="universe">
+
+        <div class="nebula nebula-blue"></div>
+        <div class="nebula nebula-gold"></div>
+        <div class="nebula nebula-purple"></div>
+
+        <div class="light-beam beam-left"></div>
+        <div class="light-beam beam-right"></div>
+
+        <div id="stars"></div>
+        <div id="dust"></div>
+        <div id="hearts"></div>
+
+        <div class="cosmic-vignette"></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SOUND CONTROL
+         ===================================================== -->
+
+    <button id="soundToggle"
+            class="sound-toggle"
+            aria-label="Toggle sound">
+        🔊
+    </button>
+
+
+    <!-- =====================================================
+         SCREEN 1
+         ===================================================== -->
+
+    <section id="welcomeScreen" class="screen active">
+
+        <div class="welcome-content">
+
+            <div class="cross-system">
+
+                <div class="cross-orbit orbit-a"></div>
+                <div class="cross-orbit orbit-b"></div>
+                <div class="cross-orbit orbit-c"></div>
+
+                <div class="cross-heart">
+                    <span class="cross-vertical"></span>
+                    <span class="cross-horizontal"></span>
+                </div>
+
+                <div class="energy-particle ep1"></div>
+                <div class="energy-particle ep2"></div>
+                <div class="energy-particle ep3"></div>
+
+            </div>
+
+
+            <div class="found-eyebrow">
+                <span>Y</span>
+                <span>O</span>
+                <span>U</span>
+                <span>F</span>
+                <span>O</span>
+                <span>U</span>
+                <span>N</span>
+                <span>D</span>
+                <span>H</span>
+                <span>I</span>
+                <span>M</span>
+            </div>
+
+
+            <h1 class="hero-title">
+
+                <span class="hero-you">
+                    YOU FOUND
+                </span>
+
+                <span class="hero-jesus">
+                    JESUS
+                </span>
+
+            </h1>
+
+
+            <div class="gold-divider">
+                <span></span>
+                <b>♥</b>
+                <span></span>
+            </div>
+
+
+            <p class="hero-message">
+                NOW DISCOVER WHAT<br>
+                HE WANTS TO TELL YOU.
+            </p>
+
+
+            <button id="beginBtn"
+                    class="cinematic-button">
+
+                <span>BEGIN</span>
+                <b>→</b>
+
+            </button>
+
+
+            <div class="tap-begin">
+
+                <div class="double-arrow">
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <small>TAP TO BEGIN</small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCREEN 2 — CATEGORIES
+         ===================================================== -->
+
+    <section id="categoryScreen" class="screen">
+
+        <div class="screen-inner category-inner">
+
+            <div class="section-eyebrow">
+                THIS IS PERSONAL
+            </div>
+
+            <h2 class="section-title">
+                What do you need
+                <span>today?</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Choose what your heart needs most.
+            </p>
+
+
+            <div class="categories">
+
+                <button class="category-card" data-category="love">
+                    <span class="category-icon">❤️</span>
+                    <strong>LOVE</strong>
+                    <small>To know you are loved</small>
+                </button>
+
+                <button class="category-card" data-category="peace">
+                    <span class="category-icon">🕊️</span>
+                    <strong>PEACE</strong>
+                    <small>For a restless heart</small>
+                </button>
+
+                <button class="category-card" data-category="forgiveness">
+                    <span class="category-icon">🤍</span>
+                    <strong>FORGIVENESS</strong>
+                    <small>To begin again</small>
+                </button>
+
+                <button class="category-card" data-category="rest">
+                    <span class="category-icon">🛌</span>
+                    <strong>REST</strong>
+                    <small>When you feel exhausted</small>
+                </button>
+
+                <button class="category-card" data-category="courage">
+                    <span class="category-icon">💪</span>
+                    <strong>COURAGE</strong>
+                    <small>When you feel afraid</small>
+                </button>
+
+                <button class="category-card" data-category="hope">
+                    <span class="category-icon">🌅</span>
+                    <strong>HOPE</strong>
+                    <small>When tomorrow feels dark</small>
+                </button>
+
+                <button class="category-card" data-category="purpose">
+                    <span class="category-icon">🧭</span>
+                    <strong>PURPOSE</strong>
+                    <small>To discover your why</small>
+                </button>
+
+                <button class="category-card" data-category="eternal-life">
+                    <span class="category-icon">♾️</span>
+                    <strong>ETERNAL LIFE</strong>
+                    <small>What happens beyond today</small>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCREEN 3 — DRAMATIC UNVEIL
+         ===================================================== -->
+
+    <section id="revealScreen" class="screen">
+
+        <div class="reveal-veil"></div>
+        <div class="reveal-rays"></div>
+        <div class="reveal-energy"></div>
+        <div class="reveal-flash"></div>
+        <div class="reveal-orbit orbit-reveal-a"></div>
+        <div class="reveal-orbit orbit-reveal-b"></div>
+        <div id="revealParticles" class="reveal-particles"></div>
+
+        <div class="reveal-ring ring-one"></div>
+        <div class="reveal-ring ring-two"></div>
+        <div class="reveal-ring ring-three"></div>
+
+        <div class="reveal-stars"></div>
+
+        <div class="reveal-content">
+
+            <div class="reveal-halo"></div>
+
+            <div class="reveal-small">
+                A MESSAGE FROM JESUS
+            </div>
+
+            <div id="revealIcon"
+                 class="reveal-icon">
+                ❤️
+            </div>
+
+            <div id="revealWord"
+                 class="reveal-word">
+                LOVE
+            </div>
+
+            <div class="reveal-line"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCREEN 4 — PROMISE
+         ===================================================== -->
+
+    <section id="promiseScreen" class="screen">
+
+        <div class="promise-page">
+
+            <div class="promise-top">
+
+                <div id="promiseIcon">❤️</div>
+
+                <span id="promiseCategory">
+                    LOVE
+                </span>
+
+            </div>
+
+
+            <div class="promise-artifact">
+
+                <div class="artifact-glow"></div>
+
+                <div class="artifact-corner top-left"></div>
+                <div class="artifact-corner top-right"></div>
+                <div class="artifact-corner bottom-left"></div>
+                <div class="artifact-corner bottom-right"></div>
+
+
+                <div class="artifact-inner">
+
+                    <div class="artifact-label">
+                        YOUR PROMISE
+                    </div>
+
+                    <div class="artifact-quote">
+                        “
+                    </div>
+
+                    <div id="promiseText"
+                         class="promise-text">
+                    </div>
+
+                    <div id="promiseReference"
+                         class="promise-reference">
+                    </div>
+
+                    <div class="artifact-divider">
+                        <span></span>
+                        <b>✦</b>
+                        <span></span>
+                    </div>
+
+                    <div id="promiseSubtitle"
+                         class="promise-subtitle">
+                    </div>
+
+                    <div class="artifact-footer">
+                        YOU FOUND JESUS
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="promise-actions">
+
+                <button id="downloadPromise"
+                        class="gold-button">
+                    ✦ SAVE MY PROMISE
+                </button>
+
+                <button id="discoverMore"
+                        class="outline-button">
+                    DISCOVER MORE →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCREEN 5 — DISCOVER
+         ===================================================== -->
+
+    <section id="discoverScreen" class="screen">
+
+        <div class="screen-inner discover-inner">
+
+            <div class="section-eyebrow">
+                GO DEEPER
+            </div>
+
+            <h2 class="section-title">
+                What does this
+                <span>mean for you?</span>
+            </h2>
+
+            <p class="section-subtitle discover-subtitle">
+                The message you found is more than a verse.
+                It points you toward the person of Jesus.
+            </p>
+
+
+            <div class="discover-options">
+
+                <button class="discover-card"
+                        data-action="movie">
+
+                    <div class="discover-symbol">
+                        🎬
+                    </div>
+
+                    <div>
+                        <strong>WATCH THE STORY</strong>
+                        <small>
+                            A short cinematic journey to Jesus
+                        </small>
+                    </div>
+
+                    <b>→</b>
+
+                </button>
+
+
+                <button class="discover-card"
+                        data-action="pray">
+
+                    <div class="discover-symbol">
+                        🙏
+                    </div>
+
+                    <div>
+                        <strong>PRAY FOR ME</strong>
+                        <small>
+                            Share what is on your heart
+                        </small>
+                    </div>
+
+                    <b>→</b>
+
+                </button>
+
+
+                <button class="discover-card"
+                        data-action="gospel">
+
+                    <div class="discover-symbol">
+                        ✝️
+                    </div>
+
+                    <div>
+                        <strong>MEET JESUS</strong>
+                        <small>
+                            Discover the Good News of Jesus
+                        </small>
+                    </div>
+
+                    <b>→</b>
+
+                </button>
+
+            </div>
+
+
+            <button class="text-back"
+                    data-back="promise">
+                ← BACK TO MY PROMISE
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCREEN 6 — MOVIE
+         ===================================================== -->
+
+    <section id="movieScreen" class="screen">
+
+        <div class="content-page movie-page">
+
+            <div class="section-eyebrow">
+                THE STORY
+            </div>
+
+            <h2 class="cinematic-heading">
+                SEE THE
+                <span>STORY.</span>
+            </h2>
+
+            <div class="movie-frame">
+
+                <iframe id="movieFrame"
+                        src=""
+                        title="A short movie about Jesus"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+
+                <div class="movie-placeholder"
+                     id="moviePlaceholder">
+                    <div>🎬</div>
+                    <strong>YOUR MOVIE</strong>
+                    <small>
+                        Add your YouTube video ID in script.js
+                    </small>
+                </div>
+
+            </div>
+
+
+            <button class="outline-button"
+                    data-back="discover">
+                ← BACK
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCREEN 7 — PRAYER
+         ===================================================== -->
+
+    <section id="prayerScreen" class="screen">
+
+        <div class="content-page prayer-page">
+
+            <div class="section-eyebrow">
+                YOU DON'T HAVE TO CARRY IT ALONE
+            </div>
+
+            <h2 class="cinematic-heading">
+                PRAY
+                <span>WITH US.</span>
+            </h2>
+
+            <p class="prayer-intro">
+                Tell us what is on your heart.
+                You may leave anything blank.
+            </p>
+
+
+            <form id="prayerForm"
+                  class="prayer-form">
+
+                <div class="form-row">
+
+                    <input type="text"
+                           id="prayerName"
+                           placeholder="Your name (optional)">
+
+                    <input type="tel"
+                           id="prayerPhone"
+                           placeholder="Phone (optional)">
+
+                </div>
+
+
+                <input type="email"
+                       id="prayerEmail"
+                       placeholder="Email (optional)">
+
+
+                <textarea id="prayerRequest"
+                          placeholder="Your prayer request (optional)"></textarea>
+
+
+                <button type="submit"
+                        class="gold-button">
+                    🙏 SEND MY PRAYER
+                </button>
+
+            </form>
+
+
+            <div id="prayerSuccess"
+                 class="prayer-success">
+
+                <div class="prayer-success-icon">🙏</div>
+
+                <div class="prayer-success-kicker">
+                    YOU ARE NOT ALONE
+                </div>
+
+                <strong>
+                    YOUR PRAYER HAS BEEN RECEIVED.
+                </strong>
+
+                <p>
+                    Thank you for sharing what is on your heart.
+                    We will pray for you and your situation.
+                </p>
+
+                <p class="prayer-success-blessing">
+                    Until then, may you experience the peace and presence
+                    of Jesus in this moment.
+                </p>
+
+            </div>
+
+
+            <button class="outline-button"
+                    data-back="discover">
+                ← BACK
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCREEN 8 — GOSPEL
+         ===================================================== -->
+
+    <section id="gospelScreen" class="screen">
+
+        <div class="gospel-page">
+
+            <div class="section-eyebrow">
+                THE GOOD NEWS — JESUS CHRIST
+            </div>
+
+            <h2 class="gospel-title">
+                THE GOSPEL OF
+                <span>JESUS CHRIST</span>
+            </h2>
+
+
+            <div class="gospel-progress">
+                <span id="gospelProgress"></span>
+            </div>
+
+
+            <div id="gospelStage"
+                 class="gospel-stage">
+
+                <div class="gospel-number">
+                    01
+                </div>
+
+                <div id="gospelIcon"
+                     class="gospel-icon">
+                    ❤️
+                </div>
+
+                <h3 id="gospelHeading">
+                    GOD LOVES YOU
+                </h3>
+
+                <p id="gospelText">
+                    You were created to know God
+                    and live in relationship with Him.
+                </p>
+
+            </div>
+
+
+            <div class="gospel-controls">
+
+                <button id="gospelPrev"
+                        class="circle-button">
+                    ←
+                </button>
+
+                <span id="gospelCount">
+                    1 / 5
+                </span>
+
+                <button id="gospelNext"
+                        class="circle-button">
+                    →
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 RESPONSE JOURNEY
+                 ================================================= -->
+
+            <div id="responseJourney"
+                 class="response-journey">
+
+                <div class="journey-head">
+
+                    <div class="journey-kicker">
+                        YOUR NEXT STEP
+                    </div>
+
+                    <div class="journey-title">
+                        A JOURNEY
+                        <span>WITH JESUS</span>
+                    </div>
+
+                    <div class="journey-progress">
+                        <span id="journeyProgress"></span>
+                    </div>
+
+                    <div class="journey-steps"
+                         id="journeySteps">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+                <div id="journeyStage"
+                     class="journey-stage">
+                </div>
+
+                <div class="journey-navigation">
+
+                    <button id="journeyPrev"
+                            class="journey-nav secondary"
+                            type="button">
+                        ← BACK
+                    </button>
+
+                    <div id="journeyCount"
+                         class="journey-count">
+                        01 / 04
+                    </div>
+
+                    <button id="journeyNext"
+                            class="journey-nav primary"
+                            type="button">
+                        CONTINUE →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="gospelFinal"
+                 class="gospel-final">
+            </div>
+
+
+            <button class="text-back gospel-back"
+                    data-back="discover">
+                ← BACK
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

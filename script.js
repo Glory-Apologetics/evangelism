@@ -3570,15 +3570,7 @@ function showResponseCompletion() {
                 <span>✦</span>
             </div>
 
-            <button
-                id="journeyHomeButton"
-                class="end-home-button"
-                data-back="welcome"
-                type="button">
-                HOME
-            </button>
-
-        </div>
+               </div>
 
     `;
 

@@ -1428,6 +1428,221 @@ function showScreen(name) {
 
     };
 
+
+    /* =====================================================
+       HOME / WELCOME RESET
+
+       When HOME is pressed after completing the experience,
+       completely restart the welcome experience instead of
+       leaving the old animation state frozen.
+       ===================================================== */
+
+    if (name === "welcome") {
+
+        /* Cancel any pending cinematic transitions. */
+        clearTimeout(revealTimer);
+        clearTimeout(gospelTransitionTimer);
+        clearTimeout(journeyTransitionTimer);
+
+        revealTimer = null;
+        gospelTransitionTimer = null;
+        journeyTransitionTimer = null;
+
+        /* Reset application state. */
+        currentCategory = null;
+        currentGospel = 0;
+        currentResponseStep = 0;
+        journeyAnimating = false;
+        movieWasOpened = false;
+
+
+        /* Reset reveal animation state. */
+        const revealScreen =
+            document.getElementById("revealScreen");
+
+        if (revealScreen) {
+
+            revealScreen.classList.remove(
+                "reveal-reset"
+            );
+
+            /*
+             * Force the browser to acknowledge the
+             * animation-state change.
+             */
+            void revealScreen.offsetWidth;
+
+        }
+
+
+        /* Reset Gospel animation state. */
+        const gospelStage =
+            document.getElementById("gospelStage");
+
+        if (gospelStage) {
+
+            gospelStage.classList.remove(
+                "gospel-transition-out",
+                "gospel-transition-in"
+            );
+
+        }
+
+
+        /* Reset journey animation state. */
+        const responseJourney =
+            document.getElementById("responseJourney");
+
+        if (responseJourney) {
+
+            responseJourney.classList.remove(
+                "journey-complete"
+            );
+
+        }
+
+        const journeyHead =
+            document.querySelector(
+                "#responseJourney .journey-head"
+            );
+
+        if (journeyHead) {
+
+            journeyHead.classList.remove(
+                "journey-complete-head"
+            );
+
+        }
+
+
+        /*
+         * Regenerate the cosmic background.
+         * This gives HOME a fresh living universe instead
+         * of returning to the exact old particle positions.
+         */
+        createStars();
+        createDust();
+        createHearts();
+
+
+        /*
+         * Show welcome screen first.
+         */
+        Object.keys(screens).forEach(key => {
+
+            const screen =
+                document.getElementById(
+                    screens[key]
+                );
+
+            if (!screen) {
+                return;
+            }
+
+            screen.classList.toggle(
+                "active",
+                key === "welcome"
+            );
+
+        });
+
+
+        /*
+         * Restart ALL CSS animations inside the welcome
+         * screen using the browser's Web Animations API.
+         *
+         * This is the important part: simply switching
+         * .active off/on does not necessarily restart a
+         * CSS animation that has already completed.
+         */
+        const welcome =
+            document.getElementById(
+                "welcomeScreen"
+            );
+
+        if (welcome) {
+
+            const animatedElements =
+                welcome.querySelectorAll("*");
+
+            animatedElements.forEach(element => {
+
+                if (
+                    typeof element.getAnimations ===
+                    "function"
+                ) {
+
+                    element
+                        .getAnimations()
+                        .forEach(animation => {
+
+                            try {
+
+                                animation.cancel();
+                                animation.play();
+
+                            } catch (error) {
+
+                                /*
+                                 * Ignore animations that
+                                 * cannot be restarted.
+                                 */
+
+                            }
+
+                        });
+
+                }
+
+            });
+
+        }
+
+
+        /*
+         * Make sure background music returns when HOME
+         * is reached, provided sound is enabled.
+         */
+        if (soundEnabled) {
+            startBackgroundMusic();
+        }
+
+
+        /*
+         * Stop and clear any YouTube video that may still
+         * be loaded in the background.
+         */
+        const movieFrame =
+            document.getElementById(
+                "movieFrame"
+            );
+
+        if (movieFrame) {
+            movieFrame.src = "";
+        }
+
+
+        /*
+         * Reset movie placeholder if it exists.
+         */
+        const moviePlaceholder =
+            document.getElementById(
+                "moviePlaceholder"
+            );
+
+        if (moviePlaceholder) {
+            moviePlaceholder.style.display = "";
+        }
+
+
+        return;
+    }
+
+
+    /* =====================================================
+       NORMAL SCREEN NAVIGATION
+       ===================================================== */
+
     Object.keys(screens).forEach(key => {
 
         const screen =
@@ -1486,8 +1701,6 @@ function showScreen(name) {
     }
 
 }
-
-
 /* =========================================================
    CATEGORIES
    ========================================================= */

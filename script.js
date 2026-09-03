@@ -58,6 +58,7 @@ let backgroundMusic = null;
 let musicSourceReady = false;
 
 let currentCategory = null;
+let currentSelectedVerse = null;
 let currentGospel = 0;
 let currentResponseStep = 0;
 
@@ -75,37 +76,127 @@ let movieWasOpened = false;
 
 const CATEGORIES = {
 
-    love: {
+    "love": {
         icon: "❤️",
         label: "LOVE",
         subtitle: "To know you are loved",
 
         promise:
-            "See what great love the Father has lavished on us, that we should be called children of God!",
+            "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
 
         reference:
-            "1 JOHN 3:1",
+            "JOHN 3:16",
+
+        verses: [
+            {
+                reference: "JOHN 3:16",
+                text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
+            },
+            {
+                reference: "ROMANS 5:8",
+                text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us."
+            },
+            {
+                reference: "JOHN 15:9",
+                text: "As the Father has loved me, so have I loved you. Now remain in my love."
+            },
+            {
+                reference: "JOHN 15:13",
+                text: "Greater love has no one than this, that he lay down his life for his friends."
+            },
+            {
+                reference: "1 JOHN 4:10",
+                text: "This is love: not that we loved God, but that he loved us and sent his Son as an atoning sacrifice for our sins."
+            },
+            {
+                reference: "JEREMIAH 31:3",
+                text: "The Lord appeared to us in the past, saying: \"I have loved you with an everlasting love; I have drawn you with loving-kindness."
+            },
+            {
+                reference: "1 JOHN 3:1",
+                text: "How great is the love the Father has lavished on us, that we should be called children of God! And that is what we are! The reason the world does not know us is that it did not know him."
+            },
+            {
+                reference: "PSALM 117:2",
+                text: "For great is his love toward us, and the faithfulness of the Lord endures forever. Praise the Lord."
+            },
+            {
+                reference: "PSALM 118:1",
+                text: "Give thanks to the Lord, for he is good; his love endures forever."
+            },
+            {
+                reference: "PSALM 31:7",
+                text: "I will be glad and rejoice in your love, for you saw my affliction and knew the anguish of my soul."
+            }
+        ],
+
+        lastVerseIndex: -1,
 
         message:
             "You are not invisible to God. His love is personal, intentional, and reaching toward you."
     },
 
-    peace: {
+    "peace": {
         icon: "🕊️",
         label: "PEACE",
         subtitle: "For a restless heart",
 
         promise:
-            "And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+            "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.",
 
         reference:
-            "PHILIPPIANS 4:7",
+            "JOHN 14:27",
+
+        verses: [
+            {
+                reference: "JOHN 14:27",
+                text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid."
+            },
+            {
+                reference: "JOHN 16:33",
+                text: "I have told you these things, so that in me you may have peace. In this world you will have trouble. But take heart! I have overcome the world.\""
+            },
+            {
+                reference: "ISAIAH 26:3",
+                text: "You will keep in perfect peace him whose mind is steadfast, because he trusts in you."
+            },
+            {
+                reference: "PSALM 4:8",
+                text: "I will lie down and sleep in peace, for you alone, O Lord, make me dwell in safety."
+            },
+            {
+                reference: "2 THESSALONIANS 3:16",
+                text: "Now may the Lord of peace himself give you peace at all times and in every way. The Lord be with all of you."
+            },
+            {
+                reference: "PSALM 55:22",
+                text: "Cast your cares on the Lord and he will sustain you; he will never let the righteous fall."
+            },
+            {
+                reference: "COLOSSIANS 3:15",
+                text: "Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful."
+            },
+            {
+                reference: "ROMANS 5:1",
+                text: "Therefore, since we have been justified through faith, we have peace with God through our Lord Jesus Christ,"
+            },
+            {
+                reference: "PSALM 119:165",
+                text: "Great peace have they who love your law, and nothing can make them stumble."
+            },
+            {
+                reference: "PSALM 29:11",
+                text: "The Lord gives strength to his people; the Lord blesses his people with peace."
+            }
+        ],
+
+        lastVerseIndex: -1,
 
         message:
             "Jesus offers a peace that does not depend on circumstances. Bring your fears and worries to Him."
     },
 
-    forgiveness: {
+    "forgiveness": {
         icon: "🤍",
         label: "FORGIVENESS",
         subtitle: "To begin again",
@@ -116,65 +207,290 @@ const CATEGORIES = {
         reference:
             "1 JOHN 1:9",
 
+        verses: [
+            {
+                reference: "1 JOHN 1:9",
+                text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness."
+            },
+            {
+                reference: "EPHESIANS 1:7",
+                text: "In him we have redemption through his blood, the forgiveness of sins, in accordance with the riches of God's grace"
+            },
+            {
+                reference: "ACTS 10:43",
+                text: "All the prophets testify about him that everyone who believes in him receives forgiveness of sins through his name.\""
+            },
+            {
+                reference: "ROMANS 8:1",
+                text: "Therefore, there is now no condemnation for those who are in Christ Jesus,"
+            },
+            {
+                reference: "PSALM 32:1",
+                text: "Blessed is he whose transgressions are forgiven, whose sins are covered."
+            },
+            {
+                reference: "PSALM 32:5",
+                text: "Then I acknowledged my sin to you and did not cover up my iniquity. I said, “I will confess my transgressions to the Lord”—and you forgave the guilt of my sin."
+            },
+            {
+                reference: "PSALM 103:12",
+                text: "As far as the east is from the west, so far has he removed our transgressions from us."
+            },
+            {
+                reference: "MICAH 7:18",
+                text: "Who is a God like you, who pardons sin and forgives the transgression of the remnant of his inheritance? You do not stay angry forever but delight to show mercy."
+            },
+            {
+                reference: "ISAIAH 1:18",
+                text: "“Come now, let us reason together,” says the Lord. “Though your sins are like scarlet, they shall be as white as snow; though they are red as crimson, they shall be like wool.”"
+            },
+            {
+                reference: "COLOSSIANS 2:13",
+                text: "When you were dead in your sins and in the uncircumcision of your sinful nature, God made you alive with Christ. He forgave us all our sins,"
+            }
+        ],
+
+        lastVerseIndex: -1,
+
         message:
             "Your past does not have to define your future. In Jesus, forgiveness and a new beginning are possible."
     },
 
-    rest: {
+    "rest": {
         icon: "🛌",
         label: "REST",
         subtitle: "When you feel exhausted",
 
         promise:
-            "Come to me, all you who are weary and burdened, and I will give you rest.",
+            "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls. For my yoke is easy and my burden is light.\"",
 
         reference:
-            "MATTHEW 11:28",
+            "MATTHEW 11:28-30",
+
+        verses: [
+            {
+                reference: "MATTHEW 11:28",
+                text: "Come to me, all you who are weary and burdened, and I will give you rest."
+            },
+            {
+                reference: "1 PETER 5:7",
+                text: "Cast all your anxiety on him because he cares for you."
+            },
+            {
+                reference: "PSALM 55:22",
+                text: "Cast your cares on the Lord and he will sustain you; he will never let the righteous fall."
+            },
+            {
+                reference: "PSALM 46:10",
+                text: "Be still, and know that I am God; I will be exalted among the nations, I will be exalted in the earth.\""
+            },
+            {
+                reference: "EXODUS 33:14",
+                text: "The Lord replied, \"My Presence will go with you, and I will give you rest.\""
+            },
+            {
+                reference: "PSALM 23:1",
+                text: "The Lord is my shepherd, I shall not be in want."
+            },
+            {
+                reference: "PSALM 62:1",
+                text: "My soul finds rest in God alone; my salvation comes from him."
+            },
+            {
+                reference: "ISAIAH 40:29",
+                text: "He gives strength to the weary and increases the power of the weak."
+            },
+            {
+                reference: "PSALM 116:7",
+                text: "Be at rest once more, O my soul, for the Lord has been good to you."
+            },
+            {
+                reference: "MARK 6:31",
+                text: "Then, because so many people were coming and going that they did not even have a chance to eat, he said to them, \"Come with me by yourselves to a quiet place and get some rest.\""
+            }
+        ],
+
+        lastVerseIndex: -1,
 
         message:
             "Jesus does not ask you to carry everything alone. Come to Him with what is weighing you down."
     },
 
-    courage: {
+    "courage": {
         icon: "💪",
         label: "COURAGE",
         subtitle: "When you feel afraid",
 
         promise:
-            "For God has not given us a spirit of fear, but of power and of love and of a sound mind.",
+            "Have I not commanded you? Be strong and courageous. Do not be terrified; do not be discouraged, for the Lord your God will be with you wherever you go.\"",
 
         reference:
-            "2 TIMOTHY 1:7",
+            "JOSHUA 1:9",
+
+        verses: [
+            {
+                reference: "JOSHUA 1:9",
+                text: "Have I not commanded you? Be strong and courageous. Do not be terrified; do not be discouraged, for the Lord your God will be with you wherever you go.\""
+            },
+            {
+                reference: "DEUTERONOMY 31:8",
+                text: "The Lord himself goes before you and will be with you; he will never leave you nor forsake you. Do not be afraid; do not be discouraged.\""
+            },
+            {
+                reference: "PSALM 56:3-4",
+                text: "When I am afraid, I will trust in you. In God, whose word I praise, in God I trust; I will not be afraid. What can mortal man do to me?"
+            },
+            {
+                reference: "ISAIAH 41:10",
+                text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand."
+            },
+            {
+                reference: "2 TIMOTHY 1:7",
+                text: "For God did not give us a spirit of timidity, but a spirit of power, of love and of self-discipline."
+            },
+            {
+                reference: "PSALM 27:1",
+                text: "The Lord is my light and my salvation- whom shall I fear? The Lord is the stronghold of my life- of whom shall I be afraid?"
+            },
+            {
+                reference: "PSALM 118:6",
+                text: "The Lord is with me; I will not be afraid. What can man do to me?"
+            },
+            {
+                reference: "PSALM 31:24",
+                text: "Be strong and take heart, all you who hope in the Lord."
+            },
+            {
+                reference: "PSALM 34:4",
+                text: "I sought the Lord, and he answered me; he delivered me from all my fears."
+            },
+            {
+                reference: "JOHN 16:33",
+                text: "I have told you these things, so that in me you may have peace. In this world you will have trouble. But take heart! I have overcome the world.\""
+            }
+        ],
+
+        lastVerseIndex: -1,
 
         message:
             "Fear does not have to control your next step. God invites you to trust Him with courage."
     },
 
-    hope: {
+    "hope": {
         icon: "🌅",
         label: "HOPE",
         subtitle: "When tomorrow feels dark",
 
         promise:
-            "For I know the plans I have for you, plans to prosper you and not to harm you, plans to give you hope and a future.",
+            "Not only so, but we also rejoice in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope. And hope does not disappoint us, because God has poured out his love into our hearts by the Holy Spirit, whom he has given us.",
 
         reference:
-            "JEREMIAH 29:11",
+            "ROMANS 5:3-5",
+
+        verses: [
+            {
+                reference: "ROMANS 15:13",
+                text: "May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit."
+            },
+            {
+                reference: "HEBREWS 6:19",
+                text: "We have this hope as an anchor for the soul, firm and secure. It enters the inner sanctuary behind the curtain,"
+            },
+            {
+                reference: "PSALM 42:5",
+                text: "Why are you downcast, O my soul? Why so disturbed within me? Put your hope in God, for I will yet praise him, my Savior and my God."
+            },
+            {
+                reference: "ROMANS 8:18",
+                text: "I consider that our present sufferings are not worth comparing with the glory that will be revealed in us."
+            },
+            {
+                reference: "JOHN 11:25-26",
+                text: "Jesus said to her, \"I am the resurrection and the life. He who believes in me will live, even though he dies; and whoever lives and believes in me will never die. Do you believe this?\""
+            },
+            {
+                reference: "PSALM 71:5",
+                text: "For you have been my hope, O Sovereign Lord, my confidence since my youth."
+            },
+            {
+                reference: "PSALM 130:5",
+                text: "I wait for the Lord, my soul waits, and in his word I put my hope."
+            },
+            {
+                reference: "ROMANS 8:24-25",
+                text: "For in this hope we were saved. But hope that is seen is no hope at all. Who hopes for what he already has? But if we hope for what we do not yet have, we wait for it patiently."
+            },
+            {
+                reference: "HEBREWS 10:23",
+                text: "Let us hold unswervingly to the hope we profess, for he who promised is faithful."
+            },
+            {
+                reference: "PSALM 119:114",
+                text: "You are my refuge and my shield; I have put my hope in your word."
+            }
+        ],
+
+        lastVerseIndex: -1,
 
         message:
             "Even when you cannot see what comes next, God is not absent. Hope can begin again."
     },
 
-    purpose: {
+    "purpose": {
         icon: "🧭",
         label: "PURPOSE",
         subtitle: "To discover your why",
 
         promise:
-            "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+            "For we are God's workmanship, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
 
         reference:
             "EPHESIANS 2:10",
+
+        verses: [
+            {
+                reference: "EPHESIANS 2:10",
+                text: "For we are God's workmanship, created in Christ Jesus to do good works, which God prepared in advance for us to do."
+            },
+            {
+                reference: "COLOSSIANS 1:16",
+                text: "For by him all things were created: things in heaven and on earth, visible and invisible, whether thrones or powers or rulers or authorities; all things were created by him and for him."
+            },
+            {
+                reference: "JOHN 15:5",
+                text: "I am the vine; you are the branches. If a man remains in me and I in him, he will bear much fruit; apart from me you can do nothing."
+            },
+            {
+                reference: "JOHN 15:16",
+                text: "You did not choose me, but I chose you and appointed you to go and bear fruit--fruit that will last. Then the Father will give you whatever you ask in my name."
+            },
+            {
+                reference: "1 CORINTHIANS 10:31",
+                text: "So whether you eat or drink or whatever you do, do it all for the glory of God."
+            },
+            {
+                reference: "MICAH 6:8",
+                text: "He has showed you, O man, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God."
+            },
+            {
+                reference: "1 PETER 4:10",
+                text: "Each one should use whatever gift he has received to serve others, faithfully administering God's grace in its various forms."
+            },
+            {
+                reference: "PHILIPPIANS 2:13",
+                text: "for it is God who works in you to will and to act according to his good purpose."
+            },
+            {
+                reference: "ROMANS 8:28",
+                text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose."
+            },
+            {
+                reference: "JEREMIAH 29:11",
+                text: "“For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.”"
+            }
+        ],
+
+        lastVerseIndex: -1,
 
         message:
             "Your life is not an accident. God created you with purpose and invites you to discover it in Him."
@@ -190,6 +506,51 @@ const CATEGORIES = {
 
         reference:
             "JOHN 3:16",
+
+        verses: [
+            {
+                reference: "JOHN 3:16",
+                text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
+            },
+            {
+                reference: "JOHN 3:36",
+                text: "Whoever believes in the Son has eternal life, but whoever rejects the Son will not see life, for God's wrath remains on him.\""
+            },
+            {
+                reference: "JOHN 5:24",
+                text: "I tell you the truth, whoever hears my word and believes him who sent me has eternal life and will not be condemned; he has crossed over from death to life."
+            },
+            {
+                reference: "JOHN 6:40",
+                text: "For my Father's will is that everyone who looks to the Son and believes in him shall have eternal life, and I will raise him up at the last day.\""
+            },
+            {
+                reference: "JOHN 10:27-28",
+                text: "My sheep listen to my voice; I know them, and they follow me. I give them eternal life, and they shall never perish; no one can snatch them out of my hand."
+            },
+            {
+                reference: "JOHN 11:25-26",
+                text: "Jesus said to her, \"I am the resurrection and the life. He who believes in me will live, even though he dies; and whoever lives and believes in me will never die. Do you believe this?\""
+            },
+            {
+                reference: "ROMANS 6:23",
+                text: "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord."
+            },
+            {
+                reference: "1 JOHN 5:11-12",
+                text: "And this is the testimony: God has given us eternal life, and this life is in his Son. He who has the Son has life; he who does not have the Son of God does not have life."
+            },
+            {
+                reference: "JOHN 17:3",
+                text: "Now this is eternal life: that they may know you, the only true God, and Jesus Christ, whom you have sent."
+            },
+            {
+                reference: "JOHN 14:19",
+                text: "Because I live, you also will live."
+            }
+        ],
+
+        lastVerseIndex: -1,
 
         message:
             "Jesus offers more than help for today. He offers reconciliation with God and the hope of eternal life."
@@ -1754,6 +2115,63 @@ function createRevealParticles() {
    PROMISE
    ========================================================= */
 
+function fitPromiseText() {
+    const artifact = $("#promiseScreen .promise-artifact");
+    const inner = $("#promiseScreen .artifact-inner");
+    const text = $("#promiseText");
+    const reference = $("#promiseReference");
+    const divider = $("#promiseScreen .artifact-divider");
+    const subtitle = $("#promiseSubtitle");
+    const label = $("#promiseScreen .artifact-label");
+    const quote = $("#promiseScreen .artifact-quote");
+    const footer = $("#promiseScreen .artifact-footer");
+    if (!artifact || !inner || !text || !reference || !divider || !subtitle || !label || !quote || !footer) return;
+
+    /* Only the Scripture changes size. Everything else keeps its design. */
+    text.style.flex = "0 0 auto";
+    text.style.margin = "0";
+    text.style.overflow = "hidden";
+    text.style.maxHeight = "none";
+    text.style.height = "auto";
+
+    const original = parseFloat(getComputedStyle(text).fontSize);
+    if (!Number.isFinite(original) || original <= 0) return;
+
+    const cs = getComputedStyle(inner);
+    const padTop = parseFloat(cs.paddingTop) || 0;
+    const padBottom = parseFloat(cs.paddingBottom) || 0;
+    const innerHeight = inner.clientHeight;
+
+    /* Fixed content: label, quote, reference, divider, subtitle. */
+    const fixed = [label, quote, reference, divider, subtitle];
+    let fixedHeight = 0;
+    for (const el of fixed) {
+        const r = el.getBoundingClientRect();
+        const c = getComputedStyle(el);
+        fixedHeight += r.height + (parseFloat(c.marginTop) || 0) + (parseFloat(c.marginBottom) || 0);
+    }
+
+    /* Reserve the footer and a small visual breathing room. */
+    const footerHeight = footer.getBoundingClientRect().height;
+    const available = Math.max(90, innerHeight - padTop - padBottom - fixedHeight - footerHeight - 22);
+
+    text.style.height = available + "px";
+    text.style.maxHeight = available + "px";
+
+    const fits = () => text.scrollHeight <= available + 1;
+    let low = Math.max(14, original * 0.42);
+    let high = original;
+    let best = low;
+
+    for (let i = 0; i < 20; i++) {
+        const mid = (low + high) / 2;
+        text.style.fontSize = mid + "px";
+        if (fits()) { best = mid; low = mid; }
+        else { high = mid; }
+    }
+    text.style.fontSize = best + "px";
+}
+
 function showPromise(category) {
 
     const data =
@@ -1766,6 +2184,80 @@ function showPromise(category) {
     currentCategory =
         category;
 
+    /* -------------------------------------------------------
+       VERSE SELECTION
+       IMPORTANT: The old version displayed data.promise/data.reference
+       here, which are only the category's default verse. That meant
+       the same verse appeared every time even though 10 verses existed.
+
+       We now cycle through a shuffled order so ALL 10 verses are used
+       before any verse can repeat. The state is also saved in localStorage
+       so refreshing the page does not reset the cycle.
+       ------------------------------------------------------- */
+    const verses = Array.isArray(data.verses) ? data.verses : [];
+    let selectedVerse = null;
+
+    if (verses.length > 0) {
+        const storageKey = `yfjesus_verse_state_v2_${category}`;
+        let state = null;
+
+        try {
+            state = JSON.parse(localStorage.getItem(storageKey) || "null");
+        } catch (error) {
+            state = null;
+        }
+
+        const validState =
+            state &&
+            Array.isArray(state.order) &&
+            state.order.length === verses.length &&
+            state.order.every(index => Number.isInteger(index) && index >= 0 && index < verses.length) &&
+            new Set(state.order).size === verses.length &&
+            Number.isInteger(state.cursor) &&
+            state.cursor >= 0 &&
+            state.cursor <= verses.length &&
+            typeof state.lastReference === "string";
+
+        if (!validState || state.cursor >= verses.length) {
+            /* New shuffled cycle. Avoid starting with the verse shown last. */
+            const order = verses.map((_, index) => index);
+
+            for (let i = order.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [order[i], order[j]] = [order[j], order[i]];
+            }
+
+            if (state && state.lastReference && order.length > 1 &&
+                verses[order[0]].reference === state.lastReference) {
+                [order[0], order[1]] = [order[1], order[0]];
+            }
+
+            state = {
+                order,
+                cursor: 0,
+                lastReference: state?.lastReference || ""
+            };
+        }
+
+        const selectedIndex = state.order[state.cursor];
+        selectedVerse = verses[selectedIndex];
+        currentSelectedVerse = selectedVerse;
+        state.cursor += 1;
+        state.lastReference = selectedVerse.reference;
+
+        try {
+            localStorage.setItem(storageKey, JSON.stringify(state));
+        } catch (error) {
+            /* localStorage may be unavailable; selection still works. */
+        }
+    } else {
+        /* Safe fallback for any category that has no verse array. */
+        selectedVerse = {
+            reference: data.reference,
+            text: data.promise
+        };
+        currentSelectedVerse = selectedVerse;
+    }
 
     $("#promiseIcon").textContent =
         data.icon;
@@ -1774,16 +2266,26 @@ function showPromise(category) {
         data.label;
 
     $("#promiseText").textContent =
-        `“${data.promise}”`;
+        `“${selectedVerse.text}”`;
 
     $("#promiseReference").textContent =
-        data.reference;
+        selectedVerse.reference;
 
     $("#promiseSubtitle").textContent =
         data.message;
 
 
     showScreen("promise");
+
+    /*
+     * Wait for the Promise screen to enter the layout so all dimensions
+     * reflect the actual viewport and active-screen CSS.
+     */
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            fitPromiseText();
+        });
+    });
 
 
     setTimeout(
@@ -1842,6 +2344,11 @@ function createPromiseImage() {
 
     const data =
         CATEGORIES[currentCategory];
+
+    const promiseForImage = currentSelectedVerse || {
+        reference: promiseForImage.reference,
+        text: promiseForImage.text
+    };
 
     if (!data) {
         return;
@@ -2199,7 +2706,7 @@ function createPromiseImage() {
     const lines =
         wrapCanvasText(
             ctx,
-            data.promise,
+            promiseForImage.text,
             maxWidth
         );
 
@@ -2234,7 +2741,7 @@ function createPromiseImage() {
 
     drawCenteredSpacedText(
         ctx,
-        data.reference,
+        promiseForImage.reference,
         width / 2,
         y + 48,
         5

@@ -961,11 +961,13 @@ button {
 }
 
 .category-card small {
-    position: relative;
-    z-index: 2;
-    margin-top: 6px;
+    display: block;
+    margin-top: 5px;
+    font-size: 8px;
+    line-height: 1.25;
+    text-align: center;
     color: #8290a6;
-    font-size: 9px;
+    padding: 0 5px;
 }
 
 
@@ -1929,7 +1931,7 @@ button {
     }
 
     .category-card {
-        height: 105px;
+        height: 110px;
         border-radius: 17px;
     }
 

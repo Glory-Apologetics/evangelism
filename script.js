@@ -993,10 +993,23 @@ function initializeSound() {
 }
 
 
-async function enableSoundFromGesture() {
+function enableSoundFromGesture() {
 
     try {
 
+        /*
+         * IMPORTANT: start the HTML audio element immediately while
+         * we are still inside the user's pointer/click gesture.
+         * Waiting for AudioContext.resume() first can lose the browser's
+         * transient user-activation permission and cause play() to fail.
+         */
+        initBackgroundMusic();
+        startBackgroundMusic();
+
+        /*
+         * The Web Audio context is used by the UI sound effects.
+         * Resume it after requesting the background music.
+         */
         if (!audioContext) {
 
             audioContext =
@@ -1020,14 +1033,13 @@ async function enableSoundFromGesture() {
             audioContext.state ===
             "suspended"
         ) {
-
-            await audioContext.resume();
-
+            audioContext.resume().catch((error) => {
+                console.warn(
+                    "AudioContext could not be resumed:",
+                    error
+                );
+            });
         }
-
-        initBackgroundMusic();
-
-        startBackgroundMusic();
 
     } catch (error) {
 

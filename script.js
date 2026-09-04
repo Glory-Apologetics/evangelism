@@ -1725,7 +1725,7 @@ function initializeNavigation() {
 
         begin.onclick = () => {
 
-            enableSoundFromGesture().catch(() => {});
+            enableSoundFromGesture();
 
             clickSound();
 
